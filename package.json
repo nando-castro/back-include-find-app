@@ -6,11 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && npm run dev:migrate && node dist/index.js",
-    "dev": "nodemon src/index.ts",
-    "dev:migrate": "npx prisma migrate dev",
-    "dev:deploy": "npx prisma migrate deploy",
-    "prisma:migrate": "npx prisma migrate dev",
-    "prisma:deploy": "npx prisma migrate deploy"
+    "dev:migrate": "npx prisma migrate dev"
   },
   "author": "Fernando Castro",
   "license": "ISC",
