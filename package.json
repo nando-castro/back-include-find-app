@@ -1,0 +1,33 @@
+{
+  "name": "app-banco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && npm run dev:migrate && node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "dev:migrate": "npx prisma migrate dev",
+    "dev:deploy": "npx prisma migrate deploy",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:deploy": "npx prisma migrate deploy"
+  },
+  "author": "Fernando Castro",
+  "license": "ISC",
+  "devDependencies": {
+    "@prisma/client": "^5.3.1",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.13.0",
+    "dotenv-cli": "^7.0.0",
+    "nodemon": "^3.0.1",
+    "prisma": "^5.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
