@@ -1,14 +1,26 @@
 const express = require("express");
-const prisma = require("./database");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+const app = express();
+const port = process.env.PORT || 5000;
 
-// const app = express();
-express().use(express.json());
 
-express().get("/items", async (req, res) => {
-  const users = await prisma.item.findMany();
+app.get("/items", (req, res) => {
+  const users = prisma.item.findMany();
   if (users.length > 0) return res.status(200).send(users);
   return res.send("No users found");
 });
+
+// Inicie o servidor na porta especificada
+app.listen(port, () => {
+  console.log(`Servidor Express rodando na porta ${port}`);
+});
+
+// app.get("/items", async (req, res) => {
+//   const users = await prisma.item.findMany();
+//   if (users.length > 0) return res.status(200).send(users);
+//   return res.send("No users found");
+// });
 
 // express().post("/item", async (req, res) => {
 //   const { name } = req.body;
@@ -55,7 +67,7 @@ express().get("/items", async (req, res) => {
 //   return res.send("No user found");
 // });
 
-const port = 5000;
-express().listen(port, () => {
-  console.log(`Server is up and running on port ${port}`);
-});
+// const port = 5000;
+// express().listen(port, () => {
+//   console.log(`Server is up and running on port ${port}`);
+// });
