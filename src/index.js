@@ -5,10 +5,20 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 
-app.get("/items", (req, res) => {
-  const users = prisma.item.findMany();
+app.get("/items", async (req, res) => {
+  const users = await prisma.item.findMany();
   if (users.length > 0) return res.status(200).send(users);
   return res.send("No users found");
+});
+
+app.post("/item", async (req, res) => {
+  const { name } = req.body;
+  await prisma.item.create({
+    data: {
+      name,
+    },
+  });
+  return res.sendStatus(201);
 });
 
 // Inicie o servidor na porta especificada
@@ -22,15 +32,6 @@ app.listen(port, () => {
 //   return res.send("No users found");
 // });
 
-// express().post("/item", async (req, res) => {
-//   const { name } = req.body;
-//   await prisma.item.create({
-//     data: {
-//       name,
-//     },
-//   });
-//   return res.sendStatus(201);
-// });
 
 // app.delete("/item/:id", async (req, res) => {
 //   const { id } = req.params;
