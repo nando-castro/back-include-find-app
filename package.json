@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev:migrate && node src/index.js",
-    "dev:migrate": "npx prisma migrate dev"
+    "start": "npm run prisma:deploy && node src/index.js",
+    "dev:migrate": "npx prisma migrate dev",
+    "prisma:deploy": "npx prisma migrate deploy"
   },
   "author": "Fernando Castro",
   "license": "ISC",
