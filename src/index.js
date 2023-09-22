@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 const app = express();
 const port = process.env.PORT || 5000;
 
-
 app.get("/items", async (req, res) => {
   const users = await prisma.item.findMany();
   if (users.length > 0) return res.status(200).send(users);
@@ -25,13 +24,6 @@ app.post("/item", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor Express rodando na porta ${port}`);
 });
-
-// app.get("/items", async (req, res) => {
-//   const users = await prisma.item.findMany();
-//   if (users.length > 0) return res.status(200).send(users);
-//   return res.send("No users found");
-// });
-
 
 // app.delete("/item/:id", async (req, res) => {
 //   const { id } = req.params;
@@ -66,9 +58,4 @@ app.listen(port, () => {
 //   });
 //   if (user.length > 0) return res.status(200).send(user);
 //   return res.send("No user found");
-// });
-
-// const port = 5000;
-// express().listen(port, () => {
-//   console.log(`Server is up and running on port ${port}`);
 // });
