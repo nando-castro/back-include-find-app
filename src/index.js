@@ -3,6 +3,9 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const app = express();
 const port = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
 
 app.get("/items", async (req, res) => {
   const users = await prisma.item.findMany();
@@ -11,10 +14,10 @@ app.get("/items", async (req, res) => {
 });
 
 app.post("/item", async (req, res) => {
-  const { name } = req.body;
+  const data = req.body;
   await prisma.item.create({
     data: {
-      name,
+      name: data.name,
     },
   });
   return res.sendStatus(201);
@@ -46,7 +49,7 @@ app.put("/items/:id", async (req, res) => {
 });
 
 app.get("/item/:name", async (req, res) => {
-  const { name } = req.params;
+  const name = req.params.name;
   const user = await prisma.item.findMany({
     where: {
       name: name,
