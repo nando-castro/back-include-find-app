@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "npm run dev:migrate && node dist/index.js",
-    "dev": "nodemon src/index.ts",
+    "start": "npm run dev:migrate && node src/index.js",
     "dev:migrate": "npx prisma migrate dev"
   },
   "author": "Fernando Castro",
