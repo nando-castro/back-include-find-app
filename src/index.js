@@ -3,9 +3,11 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const app = express();
 const port = process.env.PORT || 5000;
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/items", async (req, res) => {
   const users = await prisma.item.findMany();
@@ -22,7 +24,6 @@ app.post("/item", async (req, res) => {
   });
   return res.sendStatus(201);
 });
-
 
 app.delete("/item/:id", async (req, res) => {
   const { id } = req.params;
