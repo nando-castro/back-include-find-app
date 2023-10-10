@@ -22,8 +22,6 @@ describe("GET /item/:name", () => {
   });
 });
 
-// Adicione mais testes, conforme necessário
-
 // No final dos testes, feche o servidor Express
 afterAll((done) => {
   server.close((err) => {
