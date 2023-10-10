@@ -25,30 +25,6 @@ app.post("/item", async (req, res) => {
   return res.sendStatus(201);
 });
 
-app.delete("/item/:id", async (req, res) => {
-  const { id } = req.params;
-  await prisma.item.delete({
-    where: {
-      id: Number(id),
-    },
-  });
-  return res.sendStatus(200);
-});
-
-app.put("/items/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name } = req.body;
-  await prisma.item.update({
-    where: {
-      id: Number(id),
-    },
-    data: {
-      name,
-    },
-  });
-  return res.sendStatus(200);
-});
-
 app.get("/item/:name", async (req, res) => {
   const name = req.params.name;
   const user = await prisma.item.findMany({
@@ -61,6 +37,8 @@ app.get("/item/:name", async (req, res) => {
 });
 
 // Inicie o servidor na porta especificada
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Servidor Express rodando na porta ${port}`);
 });
+
+module.exports = { app, server };
