@@ -32,7 +32,6 @@ jobs:
           # npm run
         env: 
           DBHOST: ${{ secrets.DBHOST }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
 
   # Heavily modified deploy job to fit render.com
