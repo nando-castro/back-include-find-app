@@ -10,9 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Item {
+model User {
   id   Int    @id @default(autoincrement())
   name String
 
-  @@map("items")
+  @@map("users")
 }
